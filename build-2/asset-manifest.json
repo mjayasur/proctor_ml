@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fe055ef5.chunk.css",
+    "main.js": "/static/js/main.d42fffe9.chunk.js",
+    "main.js.map": "/static/js/main.d42fffe9.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.b86b0986.js",
+    "runtime-main.js.map": "/static/js/runtime-main.b86b0986.js.map",
+    "static/js/2.725036f5.chunk.js": "/static/js/2.725036f5.chunk.js",
+    "static/js/2.725036f5.chunk.js.map": "/static/js/2.725036f5.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.bb39392f42fda167680122c5072e223d.js": "/precache-manifest.bb39392f42fda167680122c5072e223d.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.fe055ef5.chunk.css.map": "/static/css/main.fe055ef5.chunk.css.map",
+    "static/js/2.725036f5.chunk.js.LICENSE.txt": "/static/js/2.725036f5.chunk.js.LICENSE.txt",
+    "static/media/gradient.jpeg": "/static/media/gradient.79099e5a.jpeg",
+    "static/media/gradient2.jpg": "/static/media/gradient2.76bb7b35.jpg",
+    "static/media/gradient3.jpeg": "/static/media/gradient3.5be0350f.jpeg",
+    "static/media/randomcheck.png": "/static/media/randomcheck.176210a1.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b86b0986.js",
+    "static/js/2.725036f5.chunk.js",
+    "static/css/main.fe055ef5.chunk.css",
+    "static/js/main.d42fffe9.chunk.js"
+  ]
+}

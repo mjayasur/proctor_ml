@@ -1,0 +1,33 @@
+{
+  "name": "proctorme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "backend.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjayasur/proctorme.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mjayasur/proctorme/issues"
+  },
+  "homepage": "https://github.com/mjayasur/proctorme#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.2",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "firebase": "^7.14.2",
+    "react-router-dom": "^5.1.2",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0",
+    "socketio": "^1.0.0",
+    "sqlite3": "^4.1.1"
+  }
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Login</title>
+        <link rel="icon" href="https://images.vexels.com/media/users/3/157893/isolated/preview/d6f4e679138673eb3223362c70ecf7ce-check-mark-tick-icon-by-vexels.png">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <link href="login.css" rel="stylesheet">
+          <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+        <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+
+        <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+        <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+
+        <!-- Add Firebase products that you want to use -->
+        <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" ></script>
+
+
+    </head>
+    <body>
+            <div class="container col-4 d-flex h-100">
+                    <div class="mx-auto text-center justify-content-center align-self-center">
+                        <img height=150 width=150 src="randomcheck.png">
+                        <p class = "h3">Welcome to Proctor Me.</p>
+                        <p class = "h5">To get ready for your exam, enter your SID and and click the button to be redirected and sign in with Google.</p>
+
+
+
+                        
+                        <input type="text" class = "mt-3 input" id="validationSid" placeholder="10-digit SID">
+                        <button onclick="signInWithGoogle()" class="btn btn-primary mt-3" >Sign In With Google</button>
+
+                    </div>
+            </div>
+            <script>
+                const socket = io("https://proctor.ml:4001/")
+                let exam_id = findGetParameter("exam_id")
+                console.log(exam_id)
+                var firebaseConfig = {
+                    apiKey: "AIzaSyCtcjKq9rLKL6UR-uuDSXmzqow8y2NJL7E",
+                    authDomain: "proctorme-6c134.firebaseapp.com",
+                    projectId: "proctorme-6c134",
+
+                };
+                firebase.initializeApp(firebaseConfig);
+                var provider = new firebase.auth.GoogleAuthProvider();
+                function findGetParameter(parameterName) {
+                    var result = null,
+                        tmp = [];
+                    location.search
+                        .substr(1)
+                        .split("&")
+                        .forEach(function (item) {
+                        tmp = item.split("=");
+                        if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+                        });
+                    return result;
+                }
+                function signInWithGoogle() {
+                    if ((document.getElementById("validationSid").value.length) != 10) {
+                        alert("Invalid SID, make sure it is 10 characters!")
+                    } else {
+                        firebase.auth().signInWithPopup(provider).then(function(result) {
+                            // This gives you a Google Access Token. You can use it to access the Google API.
+                            var token = result.credential.accessToken;
+                            let exam_id = findGetParameter("exam_id")
+                            window.location.assign("/calibrate.html?exam_id="+exam_id)
+                            // The signed-in user info.
+                            var user = result.user;
+                            console.log(user.displayName + "logged in")
+                            localStorage.setItem("user_name", user.displayName);
+                            localStorage.setItem("sid", document.getElementById("validationSid").value)
+                            localStorage.setItem("email", user.email);
+
+                            
+                            console.log(exam_id)
+                            socket.emit("connect student", document.getElementById("validationSid").value, user.displayName, exam_id, user.email)
+                            // ...
+                        }).catch(function(error) {
+                            // Handle Errors here.
+                            console.log(error.message)
+                            var errorCode = error.code;
+                            var errorMessage = error.message;
+                            // The email of the user's account used.
+                            var email = error.email;
+                            // The firebase.auth.AuthCredential type that was used.
+                            var credential = error.credential;
+                            // ...
+                        });
+
+                    }
+                }
+
+            </script>
+
+                      
+
+
+    </body>
+</html>

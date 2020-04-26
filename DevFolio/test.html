@@ -1,0 +1,42 @@
+<!DOCTYPE html> 
+<html> 
+      
+<head> 
+    <title>Create div element</title> 
+      
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">  </script>  
+      
+    <!-- Script to add div element in the HTML document -->
+    <script> 
+        $(document).ready(function() { 
+          
+            // Select the element inside div 
+            // element will be added 
+            $("#btnSubmit").click(function(){
+              $("body") 
+              
+            .prepend('<div class="col-md-4"><div class="work-box"><div class="work-img"><img src="assets/img/work-2.jpg" alt="" class="img-fluid"></div><div class="work-content"><div class="row"><div class="col-sm-8"><h2 class="w-title">Midterm 2</h2><div class="w-more"><span class="w-ctegory">ELENG 16A</span> / <span class="w-date">18 Apr. 2020</span></div></div><div class="col-sm-4"><div class="w-like"><span class="ion-ios-plus-outline"></span></div> </div></div></div></a></div>'); 
+          }); 
+        }); 
+    </script> 
+      
+    <!-- Style to use on div element -->
+    <style> 
+        div { 
+            padding: 20px; 
+            margin-bottom: 10px; 
+            border: 1px solid green; 
+            display: inline-block; 
+        } 
+    </style> 
+</head> 
+  
+<body> 
+    <!-- Begin Button -->  
+    <div class="demo">
+    <br> <br> <br>   
+    <input id = "btnSubmit" type="submit" value="Release"/>
+    <br> <br> <br>  
+    </div>
+    <!-- End Button -->
+</html>            

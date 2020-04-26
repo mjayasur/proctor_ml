@@ -1,0 +1,8 @@
+html,
+body {
+  height: 100%;
+}
+#validationSid {
+    display:block;
+    width:100%;
+}
